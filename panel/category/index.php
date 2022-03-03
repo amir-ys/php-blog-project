@@ -44,14 +44,13 @@
                         <tr>
                             <td><?= $category->id ?></td>
                             <td><?= $category->name ?></td>
-                            <td class="text-<?= $category->status == 1 ? 'success' : 'danger' ?>">
+                            <td class="text-<?= $category->status == 1 ? 'success' : 'warning' ?>">
                                 <?= $category->status == 1 ? 'enable' : 'disable' ?></td>
-                          <td><a class="btn btn-<?= $category->status == 1 ? 'success' : 'danger' ?>" href="<?= url('panel/category/change-status.php?category_id='
-                                  . $category->id ) ?>">
-                                  <?= $category->status == 1 ? 'enable' : 'disable' ?>
-                              </a> </td>
                             <td>
-                                <a href="<?= url('panel/category/edit.php?category_id=' . $category->id) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <a class="btn btn-sm btn-<?= $category->status == 1 ? 'success' : 'warning' ?>" href="<?= url('panel/category/change-status.php?category_id='
+                                    . $category->id ) ?>">
+                                    <?= $category->status == 1 ? 'enable' : 'disable' ?>
+                                </a>                                <a href="<?= url('panel/category/edit.php?category_id=' . $category->id) ?>" class="btn btn-info btn-sm">Edit</a>
                                 <a href="<?= url('panel/category/delete.php?category_id=' . $category->id) ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
@@ -73,7 +72,6 @@
 
 </section>
 
-<script src="<?= asset('assets/js/jquery.min.js') ?>"></script>
-<script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
+<?php require_once '../layouts/scripts.php'?>
 </body>
 </html>
