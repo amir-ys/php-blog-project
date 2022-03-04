@@ -11,25 +11,28 @@ if ((isset($_POST['email']) && !empty($_POST['email']))
 ) {
     global $pdo;
     //check password && confirm is correct
-    if ($_POST['password'] == $_POST['confirm']){
-
-        //check email is unique
-        $query = "select * from users  where email = ?";
+    if ($_POST['password'] == $_POST['confirm']) {
+        //check password length
+        if (strlen($_POST['password']) >= 6){
+            //check email is unique
+            $query = "select * from users  where email = ?";
         $stmt = $pdo->prepare($query);
         $stmt->execute([$_POST['email']]);
         $user = $stmt->fetch();
-        if (!$user && $user->email != $_POST['email']){
+        if (!$user && $user->email != $_POST['email']) {
             //store user in db
             $query = "insert into users(email , first_name , last_name , password , created_at )  values(? , ? , ?  ,? , now())";
             $stmt = $pdo->prepare($query);
-            $password = password_hash($_POST['password'] , PASSWORD_DEFAULT);
-            $stmt->execute([$_POST['email'] ,$_POST['first_name'] ,$_POST['last_name'] , $password]);
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $stmt->execute([$_POST['email'], $_POST['first_name'], $_POST['last_name'], $password]);
             //redirect user to login
             redirect('auth/login.php');
-        }else{
-            $error = 'شما از قبل ثبت نام کرده اید.' ;
+        } else {
+        $error = 'شما از قبل ثبت نام کرده اید.';
         }
-
+    }else{
+        $error = 'فیلد رمز عبور باید 6 رقم باشد.';
+        }
     }else{
         $error = 'فیلد رمز عبور با فیلد تکرار رمز عبور مطابقت ندارد.';
     }
