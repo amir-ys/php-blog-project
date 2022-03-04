@@ -34,7 +34,7 @@
                         </thead>
                         <?php
                         global $pdo;
-                        $query = 'select * from posts order by created_at desc';
+                        $query = 'select posts.* , categories.name as category_name from posts join categories on posts.category_id = categories.id order by created_at desc';
                         $stmt = $pdo->prepare($query);
                         $stmt->execute();
                         $posts =$stmt->fetchAll();
@@ -46,13 +46,7 @@
                             <td><?=  $post->id ?></td>
                             <td><img style="width: 90px;" src="<?= asset($post->image) ?>"></td>
                             <td><?= $post->title ?></td>
-
-                            <?php  $query = "select name from categories where id= ?";
-                            $stmt = $pdo->prepare($query);
-                            $stmt->execute([$post->category_id]);
-                            $postCategory = $stmt->fetch()->name ?>
-
-                            <td><?= $postCategory ?></td>
+                            <td><?= $post->category_name ?></td>
                             <td><?= substr($post->body , 0 , 50) ?> ...</td>
                             <td><span class="text-<?= $post->status == 1 ? 'success' : 'danger' ?>">
                                     <?= $post->status == 1 ? 'enable' : 'disable' ?></span> </td>
