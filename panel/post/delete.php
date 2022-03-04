@@ -1,6 +1,7 @@
 <?php require_once  '../../functions/helpers.php' ?>
 <?php require_once  '../../functions/pdo_connection.php' ?>
 <?php
+require_once '../../functions/check-login.php';
 global $pdo;
 
 if ((isset($_GET['post_id']) && !empty($_GET['post_id']))) {
