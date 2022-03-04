@@ -44,7 +44,7 @@
                         <?php  foreach ($posts  as $post) : ?>
                         <tr>
                             <td><?=  $post->id ?></td>
-                            <td><img style="width: 90px;" src=""></td>
+                            <td><img style="width: 90px;" src="<?= asset($post->image) ?>"></td>
                             <td><?= $post->title ?></td>
 
                             <?php  $query = "select name from categories where id= ?";
@@ -53,7 +53,7 @@
                             $postCategory = $stmt->fetch()->name ?>
 
                             <td><?= $postCategory ?></td>
-                            <td><?= $post->body ?></td>
+                            <td><?= substr($post->body , 0 , 50) ?> ...</td>
                             <td><span class="text-<?= $post->status == 1 ? 'success' : 'danger' ?>">
                                     <?= $post->status == 1 ? 'enable' : 'disable' ?></span> </td>
                             <td>

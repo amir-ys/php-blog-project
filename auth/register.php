@@ -41,8 +41,14 @@ if ((isset($_POST['email']) && !empty($_POST['email']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once  '../panel/layouts/header.php'?>
-</head>
+    <?php require_once '../../functions/check-login.php' ?>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PHP blog panel</title>
+        <link rel="stylesheet" href="<?= asset('assets/css/bootstrap.min.css') ?>" media="all" type="text/css">
+        <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>" media="all" type="text/css">
+    </head></head>
 
 <body>
 <section id="app">

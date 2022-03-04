@@ -1,7 +1,14 @@
 <?php require_once  '../functions/helpers.php' ?>
+<?php require_once '../functions/check-login.php' ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include_once 'layouts/header.php'?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHP blog panel</title>
+    <link rel="stylesheet" href="<?= asset('assets/css/bootstrap.min.css') ?>" media="all" type="text/css">
+    <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>" media="all" type="text/css">
+</head>
 
 <body>
 <section id="app">
